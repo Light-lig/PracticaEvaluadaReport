@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "ReporteProductoPorCategoria";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>ReporteProductoPorCategoria</h2>
+<hr />
+<input type="button" id="btnIncrustar" value="Ver Reporte" class="btn btn-success" />
+<input type="button" id="btnDescargar" value="Descargar Reporte" class="btn btnwarning" />
+<br />
+<br /><label class="label-danger" style="color:white;">Parametro</label>
+<select id="comboParametro" class="form-control">
+    <option value="">Seleccione una categoria</option>
+    @foreach (var item in ViewBag.categorias)
+    {
+        <option value="@item.idcategoria">@item.nombrecategoria</option>
+
+    }
+</select>
+<hr />
+<iframe id="reporteParam" style="width:100%; height:600px;" frameborder="0"
+        scrolling="yes">
+</iframe>
+
+@section scripts{
+    <script>
+    $(document).ready(function () {
+             var combo = $("#comboParametro");
+             //BOTON INCRUSTAR
+             $("#btnIncrustar").on("click", function () {
+             if (combo.val() == "") {
+             alert('Debe seleccionar un parametro para el reporte');
+             } else {
+             var item = combo.val();
+             var url = "@Url.Action("VerReporteProductoCategoria", "Home")?parametro=" +
+            item;
+             $("#reporteParam").attr("src", url).load();
+                 }
+
+             });
+                  //BOTON DESCARGAR
+             $("#btnDescargar").on("click", function () {
+                         if (combo.val() == "") {
+                         alert('Debe seleccionar un parametro para el reporte');
+                         } else {
+                         var item = combo.val();
+                         var url = "@Url.Action("VerReporteParam", "Productos")?parametro=" +
+                        item;
+                         window.open(url);
+                         }
+                         });
+
+    });
+
+    </script>
+
+
+
+}

@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "ReporteProductosLacteos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ReporteProductosLacteos</h2>
+
+<hr />
+<input type="button" id="btnIncrustar" value="Ver Reporte" class="btn btn-success" />
+<input type="button" id="btnDescargar" value="Descargar Reporte" class="btn btnwarning" />
+<br />
+<br /><label class="label-danger" style="color:white;">Parametro</label>
+
+<hr />
+<iframe id="reporteParam" style="width:100%; height:600px;" frameborder="0"
+        scrolling="yes">
+</iframe>
+
+@section scripts{
+    <script>
+    $(document).ready(function () {
+             //BOTON INCRUSTAR
+             $("#btnIncrustar").on("click", function () {
+          
+                 var url = "@Url.Action("VerReporteClientesLacteos", "Home")";
+             $("#reporteParam").attr("src", url).load();
+             });
+                  //BOTON DESCARGAR
+             $("#btnDescargar").on("click", function () {
+                     
+                         var item = combo.val();
+                         var url = "@Url.Action("VerReporteParam", "Productos")";
+                         window.open(url);
+                     
+                         });
+         
+    });
+
+    </script>
+
+
+
+}
