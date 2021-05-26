@@ -65,6 +65,23 @@ namespace PracticaEvaluadaReportes.Controllers
             return new FileStreamResult(stream, "application/pdf");
         }
 
+        public ActionResult VerReportePedidosPorFecha(string fecha1, string fecha2)
+        {
+            var reporte = new ClientesPorProductosLacteos();
+            DateTime fechaInicio = Convert.ToDateTime(fecha1);
+            DateTime fechFin = Convert.ToDateTime(fecha2);
+            reporte.FileName = Server.MapPath("/Rpts/ReportePedidosPorFecha.rpt");
+            reporte.SetParameterValue("fechaInicio", fecha1);
+            reporte.SetParameterValue("fechaFin", fecha2);
+
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Stream stream = reporte.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            stream.Seek(0, SeekOrigin.Begin);
+            return new FileStreamResult(stream, "application/pdf");
+        }
+
 
     }
 }

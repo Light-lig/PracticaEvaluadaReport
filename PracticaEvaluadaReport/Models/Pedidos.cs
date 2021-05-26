@@ -23,11 +23,11 @@ namespace PracticaEvaluadaReport.Models
         public int IdPedido { get; set; }
         public string IdCliente { get; set; }
         public int IdEmpleado { get; set; }
-        public Nullable<System.DateTime> FechaPedido { get; set; }
-        public Nullable<System.DateTime> FechaEntrega { get; set; }
-        public Nullable<System.DateTime> FechaEnvio { get; set; }
-        public Nullable<int> FormaEnvio { get; set; }
-        public Nullable<decimal> Cargo { get; set; }
+        public System.DateTime? FechaPedido { get; set; }
+        public System.DateTime? FechaEntrega { get; set; }
+        public System.DateTime? FechaEnvio { get; set; }
+        public int? FormaEnvio { get; set; }
+        public decimal? Cargo { get; set; }
         public string Destinatario { get; set; }
         public string DireccionDestinatario { get; set; }
         public string CiudadDestinatario { get; set; }

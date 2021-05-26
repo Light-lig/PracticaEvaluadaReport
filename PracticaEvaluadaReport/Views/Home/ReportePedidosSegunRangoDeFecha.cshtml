@@ -20,27 +20,35 @@
 @section scripts{
     <script>
     $(document).ready(function () {
-        var fechaInicio = $("#fechaInicio");
+
              //BOTON INCRUSTAR
-             $("#btnIncrustar").on("click", function () {
-             if (combo.val() == "") {
-             alert('Debe seleccionar un parametro para el reporte');
+        $("#btnIncrustar").on("click", function () {
+            var fechaInicio = $("#fechaInicio").val();
+            var fechaFin = $('#fechaFin').val();
+            if (fechaInicio === '' && fechaFin === '') {
+                    if (fechaInicio > fechaFin) {
+             alert('Fecha inicio no debe ser mayor a fecha fin');
              } else {
-             var item = combo.val();
-             var url = "@Url.Action("VerReporteProductoCategoria", "Home")?parametro=" +
-            item;
+             var url = "@Url.Action("VerReportePedidosPorFecha", "Home")?fecha1=" +
+                 fechaInicio + "&fecha2="+fechaFin;
              $("#reporteParam").attr("src", url).load();
                  }
+            } else {
+                alert('Fecha inicio y fin son obligatorias.');
+
+            }
+
 
              });
                   //BOTON DESCARGAR
-             $("#btnDescargar").on("click", function () {
-                         if (combo.val() == "") {
-                         alert('Debe seleccionar un parametro para el reporte');
-                         } else {
-                         var item = combo.val();
-                         var url = "@Url.Action("VerReporteParam", "Productos")?parametro=" +
-                        item;
+        $("#btnDescargar").on("click", function () {
+            var fechaInicio = $("#fechaInicio").val();
+            var fechaFin = $('#fechaFin').val();
+            if (fechaInicio > fechaFin) {
+                alert('Fecha inicio no debe ser mayor a fecha fin');
+            } else {
+                         var url = "@Url.Action("VerReportePedidosPorFecha", "Home")?fecha1=" +
+                 fechaInicio + "&fecha2="+fechaFin;
                          window.open(url);
                          }
                          });
