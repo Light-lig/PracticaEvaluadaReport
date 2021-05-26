@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="neptunoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="categorias">
+    <Key>
+      <PropertyRef Name="idcategoria" />
+    </Key>
+    <Property Name="idcategoria" Type="int" Nullable="false" />
+    <Property Name="nombrecategoria" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="descripcion" Type="text" />
+  </EntityType>
+  <EntityType Name="clientes">
+    <Key>
+      <PropertyRef Name="idCliente" />
+    </Key>
+    <Property Name="idCliente" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="NombreCompañia" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="NombreContacto" Type="varchar" MaxLength="100" />
+    <Property Name="CargoContacto" Type="varchar" MaxLength="100" />
+    <Property Name="Direccion" Type="varchar" MaxLength="100" />
+    <Property Name="Ciudad" Type="varchar" MaxLength="100" />
+    <Property Name="Region" Type="varchar" MaxLength="100" />
+    <Property Name="CodPostal" Type="varchar" MaxLength="100" />
+    <Property Name="Pais" Type="varchar" MaxLength="100" />
+    <Property Name="Telefono" Type="varchar" MaxLength="30" />
+    <Property Name="Fax" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="compañiasdeenvios">
+    <Key>
+      <PropertyRef Name="idCompañiaEnvios" />
+    </Key>
+    <Property Name="idCompañiaEnvios" Type="int" Nullable="false" />
+    <Property Name="nombreCompañia" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="24" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'neptuno.dbo.detallesdepedidos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="detallesdepedidos">
+    <Key>
+      <PropertyRef Name="preciounidad" />
+      <PropertyRef Name="cantidad" />
+      <PropertyRef Name="descuento" />
+    </Key>
+    <Property Name="idpedido" Type="int" />
+    <Property Name="idproducto" Type="int" />
+    <Property Name="preciounidad" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
+    <Property Name="descuento" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empleados">
+    <Key>
+      <PropertyRef Name="IdEmpleado" />
+    </Key>
+    <Property Name="IdEmpleado" Type="int" Nullable="false" />
+    <Property Name="Apellidos" Type="varchar" MaxLength="20" />
+    <Property Name="Nombre" Type="varchar" MaxLength="20" />
+    <Property Name="cargo" Type="varchar" MaxLength="40" />
+    <Property Name="Tratamiento" Type="varchar" MaxLength="40" />
+    <Property Name="FechaNacimiento" Type="date" />
+    <Property Name="FechaContratacion" Type="date" />
+    <Property Name="direccion" Type="varchar" MaxLength="60" />
+    <Property Name="ciudad" Type="varchar" MaxLength="15" />
+    <Property Name="region" Type="varchar" MaxLength="15" />
+    <Property Name="codPostal" Type="varchar" MaxLength="10" />
+    <Property Name="pais" Type="varchar" MaxLength="15" />
+    <Property Name="TelDomicilio" Type="varchar" MaxLength="24" />
+    <Property Name="Extension" Type="varchar" MaxLength="4" />
+    <Property Name="notas" Type="text" />
+    <Property Name="Jefe" Type="int" />
+    <Property Name="sueldoBasico" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="Pedidos">
+    <Key>
+      <PropertyRef Name="IdPedido" />
+    </Key>
+    <Property Name="IdPedido" Type="int" Nullable="false" />
+    <Property Name="IdCliente" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="IdEmpleado" Type="int" Nullable="false" />
+    <Property Name="FechaPedido" Type="date" />
+    <Property Name="FechaEntrega" Type="date" />
+    <Property Name="FechaEnvio" Type="date" />
+    <Property Name="FormaEnvio" Type="int" />
+    <Property Name="Cargo" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Destinatario" Type="varchar" MaxLength="60" />
+    <Property Name="DireccionDestinatario" Type="varchar" MaxLength="60" />
+    <Property Name="CiudadDestinatario" Type="varchar" MaxLength="60" />
+    <Property Name="RegionDestinatario" Type="varchar" MaxLength="60" />
+    <Property Name="CodPostalDestinatario" Type="varchar" MaxLength="60" />
+    <Property Name="PaisDestinatario" Type="varchar" MaxLength="60" />
+  </EntityType>
+  <EntityType Name="productos">
+    <Key>
+      <PropertyRef Name="idproducto" />
+    </Key>
+    <Property Name="idproducto" Type="int" Nullable="false" />
+    <Property Name="nombreProducto" Type="varchar" MaxLength="40" />
+    <Property Name="idProveedor" Type="int" />
+    <Property Name="idCategoria" Type="int" />
+    <Property Name="cantidadPorUnidad" Type="varchar" MaxLength="20" />
+    <Property Name="precioUnidad" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="unidadesEnExistencia" Type="smallint" />
+    <Property Name="unidadesEnPedido" Type="smallint" />
+    <Property Name="nivelNuevoPedido" Type="smallint" />
+    <Property Name="suspendido" Type="smallint" />
+    <Property Name="categoriaProducto" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="proveedores">
+    <Key>
+      <PropertyRef Name="idProveedor" />
+    </Key>
+    <Property Name="idProveedor" Type="int" Nullable="false" />
+    <Property Name="nombreCompañia" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="nombrecontacto" Type="varchar" MaxLength="30" />
+    <Property Name="cargocontacto" Type="varchar" MaxLength="30" />
+    <Property Name="direccion" Type="varchar" MaxLength="60" />
+    <Property Name="ciudad" Type="varchar" MaxLength="15" />
+    <Property Name="region" Type="varchar" MaxLength="15" />
+    <Property Name="codPostal" Type="varchar" MaxLength="10" />
+    <Property Name="pais" Type="varchar" MaxLength="15" />
+    <Property Name="telefono" Type="varchar" MaxLength="24" />
+    <Property Name="fax" Type="varchar" MaxLength="24" />
+    <Property Name="paginaprincipal" Type="text" />
+  </EntityType>
+  <Association Name="fk_1">
+    <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="0..1" />
+    <End Role="detallesdepedidos" Type="Self.detallesdepedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedidos">
+        <PropertyRef Name="IdPedido" />
+      </Principal>
+      <Dependent Role="detallesdepedidos">
+        <PropertyRef Name="idpedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_2">
+    <End Role="productos" Type="Self.productos" Multiplicity="0..1" />
+    <End Role="detallesdepedidos" Type="Self.detallesdepedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos">
+        <PropertyRef Name="idproducto" />
+      </Principal>
+      <Dependent Role="detallesdepedidos">
+        <PropertyRef Name="idproducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_3">
+    <End Role="proveedores" Type="Self.proveedores" Multiplicity="0..1" />
+    <End Role="productos" Type="Self.productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedores">
+        <PropertyRef Name="idProveedor" />
+      </Principal>
+      <Dependent Role="productos">
+        <PropertyRef Name="idProveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_4">
+    <End Role="compañiasdeenvios" Type="Self.compañiasdeenvios" Multiplicity="0..1" />
+    <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="compañiasdeenvios">
+        <PropertyRef Name="idCompañiaEnvios" />
+      </Principal>
+      <Dependent Role="Pedidos">
+        <PropertyRef Name="FormaEnvio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_5">
+    <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+    <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="Pedidos">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_6">
+    <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
+    <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleados">
+        <PropertyRef Name="IdEmpleado" />
+      </Principal>
+      <Dependent Role="Pedidos">
+        <PropertyRef Name="IdEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_7">
+    <End Role="categorias" Type="Self.categorias" Multiplicity="0..1" />
+    <End Role="productos" Type="Self.productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categorias">
+        <PropertyRef Name="idcategoria" />
+      </Principal>
+      <Dependent Role="productos">
+        <PropertyRef Name="idCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="neptunoModelStoreContainer">
+    <EntitySet Name="categorias" EntityType="Self.categorias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="clientes" EntityType="Self.clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="compañiasdeenvios" EntityType="Self.compañiasdeenvios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pedidos" EntityType="Self.Pedidos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="productos" EntityType="Self.productos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proveedores" EntityType="Self.proveedores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="detallesdepedidos" EntityType="Self.detallesdepedidos" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [detallesdepedidos].[idpedido] AS [idpedido], 
+    [detallesdepedidos].[idproducto] AS [idproducto], 
+    [detallesdepedidos].[preciounidad] AS [preciounidad], 
+    [detallesdepedidos].[cantidad] AS [cantidad], 
+    [detallesdepedidos].[descuento] AS [descuento]
+    FROM [dbo].[detallesdepedidos] AS [detallesdepedidos]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="fk_1" Association="Self.fk_1">
+      <End Role="Pedidos" EntitySet="Pedidos" />
+      <End Role="detallesdepedidos" EntitySet="detallesdepedidos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_2" Association="Self.fk_2">
+      <End Role="productos" EntitySet="productos" />
+      <End Role="detallesdepedidos" EntitySet="detallesdepedidos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_3" Association="Self.fk_3">
+      <End Role="proveedores" EntitySet="proveedores" />
+      <End Role="productos" EntitySet="productos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_4" Association="Self.fk_4">
+      <End Role="compañiasdeenvios" EntitySet="compañiasdeenvios" />
+      <End Role="Pedidos" EntitySet="Pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_5" Association="Self.fk_5">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="Pedidos" EntitySet="Pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_6" Association="Self.fk_6">
+      <End Role="Empleados" EntitySet="Empleados" />
+      <End Role="Pedidos" EntitySet="Pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_7" Association="Self.fk_7">
+      <End Role="categorias" EntitySet="categorias" />
+      <End Role="productos" EntitySet="productos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
