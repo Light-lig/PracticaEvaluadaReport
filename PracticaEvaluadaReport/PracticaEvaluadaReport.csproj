@@ -187,10 +187,22 @@
       <DependentUpon>ProductosPorCategoria.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Rpts\ReporteEmpleadosEdad.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteEmpleadosEdad.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Rpts\ReportePedidosPorFecha.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ReportePedidosPorFecha.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rpts\ReportePorveedoresPorCategoria.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportePorveedoresPorCategoria.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
@@ -247,6 +259,8 @@
     <Content Include="Views\Home\ReporteProductoPorCategoria.cshtml" />
     <Content Include="Views\Home\ReporteProductosLacteos.cshtml" />
     <Content Include="Views\Home\ReportePedidosSegunRangoDeFecha.cshtml" />
+    <Content Include="Views\Home\ReporteProveedoresPorCategoria.cshtml" />
+    <Content Include="Views\Home\ReporteEmpleadosEdad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -277,9 +291,17 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ProductosPorCategoria.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Rpts\ReporteEmpleadosEdad.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteEmpleadosEdad.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Rpts\ReportePedidosPorFecha.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReportePedidosPorFecha.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rpts\ReportePorveedoresPorCategoria.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportePorveedoresPorCategoria.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

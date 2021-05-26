@@ -1,12 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "ReporteProductoPorCategoria";
+    ViewBag.Title = "ReporteProveedoresPorCategoria";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
-<h2>ReporteProductoPorCategoria</h2>
+<h2>ReporteProveedoresPorCategoria</h2>
 <hr />
 <input type="button" id="btnIncrustar" value="Ver Reporte" class="btn btn-success" />
 <input type="button" id="btnDescargar" value="Descargar Reporte" class="btn btnwarning" />
@@ -35,7 +33,7 @@
              alert('Debe seleccionar un parametro para el reporte');
              } else {
              var item = combo.val();
-             var url = "@Url.Action("VerReporteProductoCategoria", "Home")?parametro=" +
+             var url = "@Url.Action("VerReporteProveedorCategoria", "Home")?parametro=" +
             item;
              $("#reporteParam").attr("src", url).load();
                  }
@@ -47,7 +45,7 @@
                          alert('Debe seleccionar un parametro para el reporte');
                          } else {
                          var item = combo.val();
-                         var url = "@Url.Action("VerReporteProductoCategoria", "Home")?parametro=" +
+                         var url = "@Url.Action("VerReporteProveedorCategoria", "Home")?parametro=" +
                         item;
                          window.open(url);
                          }
@@ -60,3 +58,4 @@
 
 
 }
+

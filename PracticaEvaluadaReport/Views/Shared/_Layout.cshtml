@@ -9,7 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -24,6 +24,9 @@
                     <li>@Html.ActionLink("Reporte productos por categoria", "ReporteProductoPorCategoria", "Home")</li>
                     <li>@Html.ActionLink("Reporte de clientes lacteos.", "ReporteProductosLacteos", "Home")</li>
                     <li>@Html.ActionLink("Reporte de pedidos por fecha", "ReportePedidosSegunRangoDeFecha", "Home")</li>
+                    <li>@Html.ActionLink("Reporte de proveedores por categoria", "ReporteProveedoresPorCategoria", "Home")</li>
+                    <li>@Html.ActionLink("Reporte de empleado por rango de edad", "ReporteEmpleadosEdad", "Home")</li>
+
                 </ul>
             </div>
         </div>

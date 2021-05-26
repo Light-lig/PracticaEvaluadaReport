@@ -30,6 +30,16 @@ namespace PracticaEvaluadaReportes.Controllers
         {
             return View();
         }
+        public ActionResult ReporteProveedoresPorCategoria()
+        {
+            var categorias = conexto.categorias.ToList();
+            ViewBag.categorias = categorias;
+            return View();
+        }
+        public ActionResult ReporteEmpleadosEdad()
+        {
+            return View();
+        }
 
 
         public ActionResult VerReporteProductoCategoria(int parametro)
@@ -82,6 +92,33 @@ namespace PracticaEvaluadaReportes.Controllers
             return new FileStreamResult(stream, "application/pdf");
         }
 
+        public ActionResult VerReporteProveedorCategoria(int parametro)
+        {
+            var reporte = new ProductosPorCategoria();
+            reporte.FileName = Server.MapPath("/Rpts/ReportePorveedoresPorCategoria.rpt");
+            reporte.SetParameterValue("paramIdCategoria", parametro);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Stream stream = reporte.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            stream.Seek(0, SeekOrigin.Begin);
+            return new FileStreamResult(stream, "application/pdf");
+        }
 
+        public ActionResult VerReporteEmpleadosPorEdad(int edad1, int edad2)
+        {
+            var reporte = new ClientesPorProductosLacteos();
+
+            reporte.FileName = Server.MapPath("/Rpts/ReporteEmpleadosEdad.rpt");
+            reporte.SetParameterValue("edadInicio", edad1);
+            reporte.SetParameterValue("edadFin", edad2);
+
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Stream stream = reporte.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            stream.Seek(0, SeekOrigin.Begin);
+            return new FileStreamResult(stream, "application/pdf");
+        }
     }
 }
