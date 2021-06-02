@@ -47,6 +47,17 @@ namespace PracticaEvaluadaReportes.Controllers
             var reporte = new ProductosPorCategoria();
             reporte.FileName = Server.MapPath("/Rpts/ProductosPorCategoria.rpt");
             reporte.SetParameterValue("paramIdCategoria", parametro);
+              var coninfo = getConexion();
+            TableLogOnInfo logoninfo = new TableLogOnInfo();
+            Tables tables;
+            tables = reporte.Database.Tables;
+            reporte.DataSourceConnections.Clear();
+            foreach (Table item in tables)
+            {
+                logoninfo = item.LogOnInfo;
+                logoninfo.ConnectionInfo = coninfo;
+                item.ApplyLogOnInfo(logoninfo);
+            }
             Response.Buffer = false;
             Response.ClearContent();
             Response.ClearHeaders();
@@ -67,6 +78,17 @@ namespace PracticaEvaluadaReportes.Controllers
                             where pro.idCategoria == 4
                             select c).ToList();
             reporte.SetDataSource(clientes);
+             var coninfo = getConexion();
+            TableLogOnInfo logoninfo = new TableLogOnInfo();
+            Tables tables;
+            tables = reporte.Database.Tables;
+            reporte.DataSourceConnections.Clear();
+            foreach (Table item in tables)
+            {
+                logoninfo = item.LogOnInfo;
+                logoninfo.ConnectionInfo = coninfo;
+                item.ApplyLogOnInfo(logoninfo);
+            }
             Response.Buffer = false;
             Response.ClearContent();
             Response.ClearHeaders();
@@ -83,6 +105,17 @@ namespace PracticaEvaluadaReportes.Controllers
             reporte.FileName = Server.MapPath("/Rpts/ReportePedidosPorFecha.rpt");
             reporte.SetParameterValue("fechaInicio", fecha1);
             reporte.SetParameterValue("fechaFin", fecha2);
+              var coninfo = getConexion();
+            TableLogOnInfo logoninfo = new TableLogOnInfo();
+            Tables tables;
+            tables = reporte.Database.Tables;
+            reporte.DataSourceConnections.Clear();
+            foreach (Table item in tables)
+            {
+                logoninfo = item.LogOnInfo;
+                logoninfo.ConnectionInfo = coninfo;
+                item.ApplyLogOnInfo(logoninfo);
+            }
 
             Response.Buffer = false;
             Response.ClearContent();
@@ -91,12 +124,32 @@ namespace PracticaEvaluadaReportes.Controllers
             stream.Seek(0, SeekOrigin.Begin);
             return new FileStreamResult(stream, "application/pdf");
         }
+        
+        public ConnectionInfo getConexion()
+        {
+            ConnectionInfo crconnectioninfo = new ConnectionInfo();
+            crconnectioninfo.ServerName = ".";
+            crconnectioninfo.DatabaseName = "neptuno";
+            crconnectioninfo.IntegratedSecurity = true;
+            return crconnectioninfo;
+        }
 
         public ActionResult VerReporteProveedorCategoria(int parametro)
         {
             var reporte = new ProductosPorCategoria();
             reporte.FileName = Server.MapPath("/Rpts/ReportePorveedoresPorCategoria.rpt");
             reporte.SetParameterValue("paramIdCategoria", parametro);
+              var coninfo = getConexion();
+            TableLogOnInfo logoninfo = new TableLogOnInfo();
+            Tables tables;
+            tables = reporte.Database.Tables;
+            reporte.DataSourceConnections.Clear();
+            foreach (Table item in tables)
+            {
+                logoninfo = item.LogOnInfo;
+                logoninfo.ConnectionInfo = coninfo;
+                item.ApplyLogOnInfo(logoninfo);
+            }
             Response.Buffer = false;
             Response.ClearContent();
             Response.ClearHeaders();
@@ -112,6 +165,17 @@ namespace PracticaEvaluadaReportes.Controllers
             reporte.FileName = Server.MapPath("/Rpts/ReporteEmpleadosEdad.rpt");
             reporte.SetParameterValue("edadInicio", edad1);
             reporte.SetParameterValue("edadFin", edad2);
+              var coninfo = getConexion();
+            TableLogOnInfo logoninfo = new TableLogOnInfo();
+            Tables tables;
+            tables = reporte.Database.Tables;
+            reporte.DataSourceConnections.Clear();
+            foreach (Table item in tables)
+            {
+                logoninfo = item.LogOnInfo;
+                logoninfo.ConnectionInfo = coninfo;
+                item.ApplyLogOnInfo(logoninfo);
+            }
 
             Response.Buffer = false;
             Response.ClearContent();
