@@ -78,17 +78,7 @@ namespace PracticaEvaluadaReportes.Controllers
                             where pro.idCategoria == 4
                             select c).ToList();
             reporte.SetDataSource(clientes);
-             var coninfo = getConexion();
-            TableLogOnInfo logoninfo = new TableLogOnInfo();
-            Tables tables;
-            tables = reporte.Database.Tables;
-            reporte.DataSourceConnections.Clear();
-            foreach (Table item in tables)
-            {
-                logoninfo = item.LogOnInfo;
-                logoninfo.ConnectionInfo = coninfo;
-                item.ApplyLogOnInfo(logoninfo);
-            }
+          
             Response.Buffer = false;
             Response.ClearContent();
             Response.ClearHeaders();
